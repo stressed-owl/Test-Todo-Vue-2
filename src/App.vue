@@ -2,17 +2,21 @@
   <div class="app">
     <div class="app-wrapper">
       <todo-form />
-      <todo-list :todos="this.$store.state.todos" />
+      <todo-list :todos="todos" />
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import TodoForm from "./components/TodoForm.vue";
 import TodoList from "./components/TodoList.vue";
 export default {
   components: { TodoList, TodoForm },
   name: "App",
+  computed: mapState({
+    todos: (state) => state.todos,
+  }),
 };
 </script>
 

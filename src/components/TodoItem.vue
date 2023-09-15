@@ -13,7 +13,7 @@
         </p>
       </div>
       <div class="todo-item-right-content">
-        <button @click="deleteTodo" class="todo-delete">
+        <button @click="deleteTodo(todo.id)" class="todo-delete">
           <i class="fa-solid fa-trash"></i>
         </button>
       </div>
@@ -22,15 +22,16 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   name: "todo-item",
   props: {
     todo: Object,
   },
   methods: {
-    deleteTodo() {
-      this.$store.commit("deleteTodo", this.todo.id);
-    },
+    ...mapMutations({
+      deleteTodo: "deleteTodo",
+    }),
   },
 };
 </script>
